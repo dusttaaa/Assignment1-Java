@@ -1,23 +1,41 @@
-public class Order {
-    private int orderId;
-    private MenuItem item;
-    private int quantity;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Order(int orderId, MenuItem item, int quantity) {
+public class Order {
+    private final int orderId;
+    private final List<MenuItem> items;
+
+    public Order(int orderId) {
         this.orderId = orderId;
-        this.item = item;
-        this.quantity = quantity;
+        this.items = new ArrayList<>();
+    }
+
+    public void addItem(MenuItem item) {
+        items.add(item);
     }
 
     public double getTotalPrice() {
-        return item.getPrice() * quantity;
+        double total = 0;
+        for (MenuItem item : items) {
+            total += item.getPrice();
+        }
+        return total;
     }
 
-    public void printOrder() {
-        System.out.println("\nOrder #" + orderId);
-        item.printInfo();
-        System.out.println("Quantity: " + quantity);
-        System.out.println("Total price: " + getTotalPrice() + "tg");
+    @Override
+    public String toString() {
+        return "Order #" + orderId + ", Items: " + items + ", Total: " + getTotalPrice() + " tg";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order order)) return false;
+        return orderId == order.orderId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(orderId);
     }
 }
-

@@ -2,25 +2,27 @@ public class Main {
     public static void main(String[] args) {
 
         Restaurant restaurant = new Restaurant("Cafe");
-        restaurant.printRestaurant();
 
-        MenuItem pizza = new MenuItem("Pizza", 2500);
-        MenuItem burger = new MenuItem("Burger", 1500);
+        MenuItem pizza = new FoodItem("Pizza", 2500);
+        MenuItem burger = new FoodItem("Burger", 1500);
+        MenuItem cola = new DrinkItem("Cola", 800);
 
-        pizza.printInfo();
-        burger.printInfo();
+        restaurant.addMenuItem(pizza);
+        restaurant.addMenuItem(burger);
+        restaurant.addMenuItem(cola);
 
-        Order order1 = new Order(1, pizza, 2);
-        Order order2 = new Order(2, burger, 3);
+        System.out.println(restaurant);
 
-        order1.printOrder();
-        order2.printOrder();
+        System.out.println("\nFood only:");
+        System.out.println(restaurant.filterByCategory("Food"));
 
-        if (pizza.getPrice() > burger.getPrice()) {
-            System.out.println("\nPizza is more expensive than Burger");
-        } else {
-            System.out.println("\nBurger is more expensive than Pizza");
-        }
+        System.out.println("\nSorted by price:");
+        System.out.println(restaurant.sortByPrice());
+
+        Order order = new Order(1);
+        order.addItem(pizza);
+        order.addItem(cola);
+
+        System.out.println("\n" + order);
     }
 }
-
