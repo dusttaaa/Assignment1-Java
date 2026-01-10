@@ -13,16 +13,16 @@ public class Main {
 
         System.out.println(restaurant);
 
-        System.out.println("\nFood only:");
-        System.out.println(restaurant.filterByCategory("Food"));
+        MenuItemDAO dao = new MenuItemDAO();
 
-        System.out.println("\nSorted by price:");
-        System.out.println(restaurant.sortByPrice());
+        dao.addMenuItem(pizza);
+        dao.addMenuItem(burger);
+        dao.addMenuItem(cola);
 
-        Order order = new Order(1);
-        order.addItem(pizza);
-        order.addItem(cola);
+        System.out.println("\nFrom database:");
+        dao.getAllMenuItems();
 
-        System.out.println("\n" + order);
+        dao.updatePrice("Pizza", 2700);
+        dao.deleteMenuItem("Burger");
     }
 }
