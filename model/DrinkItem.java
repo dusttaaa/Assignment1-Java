@@ -1,0 +1,14 @@
+package com.example.restaurant.model;
+
+public class DrinkItem extends MenuItem {
+
+    public DrinkItem(String name, double price) {
+        super(name, price);
+    }
+
+    @Override
+    public String getCategory() {
+        return "Drink";
+    }
+}
+
